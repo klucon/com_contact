@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from fastapi import APIRouter, Depends, Form, Request
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, RedirectResponse, Response
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.api.admin.deps import CurrentAdminUser
@@ -82,7 +82,7 @@ async def new_post(
     email: str = Form(""),
     subject: str = Form(""),
     message: str = Form(""),
-) -> HTMLResponse | RedirectResponse:
+) -> Response:
     errors: dict[str, str] = {}
     if not name.strip():
         errors["name"] = "Jméno je povinné."
