@@ -12,6 +12,7 @@ from src.database.base import get_db_session
 from .service import (
     count_messages,
     count_unread,
+    create_message,
     delete_message,
     get_or_create_settings,
     list_messages,
@@ -51,6 +52,57 @@ async def inbox(
         pages=pages,
         flash=flash,
     )
+
+
+@router.get("/new", response_class=HTMLResponse)
+async def new_get(
+    request: Request,
+    current_user: CurrentAdminUser,
+    _acl: object = Depends(require_admin_permission("contact.manage")),
+    db: AsyncSession = Depends(get_db_session),
+) -> HTMLResponse:
+    return await admin_render(
+        "admin/com_contact/new.html",
+        request,
+        db,
+        user=current_user,
+        errors={},
+        form={},
+        flash=None,
+    )
+
+
+@router.post("/new")
+async def new_post(
+    request: Request,
+    current_user: CurrentAdminUser,
+    _acl: object = Depends(require_admin_permission("contact.manage")),
+    db: AsyncSession = Depends(get_db_session),
+    name: str = Form(""),
+    email: str = Form(""),
+    subject: str = Form(""),
+    message: str = Form(""),
+) -> HTMLResponse | RedirectResponse:
+    errors: dict[str, str] = {}
+    if not name.strip():
+        errors["name"] = "Jméno je povinné."
+    if not email.strip() or "@" not in email:
+        errors["email"] = "Zadejte platný e-mail."
+    if not message.strip():
+        errors["message"] = "Zpráva je povinná."
+    if errors:
+        return await admin_render(
+            "admin/com_contact/new.html",
+            request,
+            db,
+            user=current_user,
+            errors=errors,
+            form={"name": name, "email": email, "subject": subject, "message": message},
+            flash=None,
+        )
+    await create_message(db, name=name, email=email, subject=subject, message=message)
+    request.session["flash"] = {"type": "success", "text": "Zpráva byla přidána."}
+    return RedirectResponse("/admin/com_contact", status_code=303)
 
 
 @router.post("/{message_id}/read")

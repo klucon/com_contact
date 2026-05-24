@@ -37,5 +37,8 @@
   "com_contact.admin.settings.recipient_email": "E-mail příjemce",
   "com_contact.admin.settings.subject_prefix": "Předpona předmětu",
   "com_contact.admin.settings.notify_sender": "Potvrdit odesílateli přijetí zprávy",
-  "com_contact.admin.settings.save": "Uložit nastavení"
+  "com_contact.admin.settings.save": "Uložit nastavení",
+
+  "com_contact.admin.new": "Nová zpráva",
+  "com_contact.admin.col.message": "Zpráva"
 }

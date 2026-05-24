@@ -2,6 +2,15 @@
 {% block title %}{{ ct('com_contact.admin.heading') }}{% endblock %}
 {% block heading %}{{ ct('com_contact.admin.heading') }}{% endblock %}
 
+{% from "_toolbar.html" import btn_new, separator, btn_settings %}
+{% block toolbar %}
+<div class="cms-toolbar" role="toolbar" aria-label="{{ ct('com_contact.admin.heading') }}">
+  {{ btn_new(t, '/admin/com_contact/new') }}
+  {{ separator() }}
+  {{ btn_settings(t, '/admin/com_contact/settings') }}
+</div>
+{% endblock %}
+
 {% block content %}
 {% include "admin/com_contact/_breadcrumbs.html" %}
 
@@ -12,23 +21,15 @@
 </div>
 {% endif %}
 
-<div class="d-flex justify-content-between align-items-center mb-3">
-  <div>
-    <span class="text-body-secondary small">
-      {{ ct('com_contact.admin.total').replace('{total}', total|string) }}
-      {% if unread > 0 %}
-      &nbsp;·&nbsp;
-      <span class="badge bg-warning text-dark">
-        {{ ct('com_contact.admin.unread').replace('{unread}', unread|string) }}
-      </span>
-      {% endif %}
-    </span>
-  </div>
-  <a href="/admin/com_contact/settings" class="btn btn-outline-secondary btn-sm">
-    <i class="bi bi-gear" aria-hidden="true"></i>
-    {{ ct('com_contact.admin.settings') }}
-  </a>
-</div>
+<p class="text-body-secondary small mb-3">
+  {{ ct('com_contact.admin.total').replace('{total}', total|string) }}
+  {% if unread > 0 %}
+  &nbsp;·&nbsp;
+  <span class="badge bg-warning text-dark">
+    {{ ct('com_contact.admin.unread').replace('{unread}', unread|string) }}
+  </span>
+  {% endif %}
+</p>
 
 <div class="card">
   <div class="table-responsive">

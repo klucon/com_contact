@@ -37,5 +37,8 @@
   "com_contact.admin.settings.recipient_email": "Recipient email",
   "com_contact.admin.settings.subject_prefix": "Subject prefix",
   "com_contact.admin.settings.notify_sender": "Send confirmation to sender",
-  "com_contact.admin.settings.save": "Save settings"
+  "com_contact.admin.settings.save": "Save settings",
+
+  "com_contact.admin.new": "New message",
+  "com_contact.admin.col.message": "Message"
 }

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}{{ ct('com_contact.admin.new') }} – {{ ct('com_contact.admin.heading') }}{% endblock %}
+{% block heading %}{{ ct('com_contact.admin.heading') }}{% endblock %}
+
+{% from "_toolbar.html" import btn_save, btn_cancel %}
+{% block toolbar %}
+<div class="cms-toolbar" role="toolbar" aria-label="{{ ct('com_contact.admin.new') }}">
+  {{ btn_save(t) }}
+  {{ btn_cancel(t, '/admin/com_contact') }}
+</div>
+{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb" class="mb-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/admin">{{ t('nav.dashboard') }}</a></li>
+    <li class="breadcrumb-item"><a href="/admin/com_contact">{{ ct('com_contact.admin.heading') }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ ct('com_contact.admin.new') }}</li>
+  </ol>
+</nav>
+
+{% if flash %}
+<div class="alert alert-{{ flash.type }} alert-dismissible mb-4" role="alert">
+  {{ flash.text }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ t('alert.close') }}"></button>
+</div>
+{% endif %}
+
+<div class="card">
+  <div class="card-body">
+    <form id="cms-edit-form" method="post" action="/admin/com_contact/new">
+      <input type="hidden" name="_csrf" value="{{ request.session.get('_csrf', '') }}">
+
+      <div class="mb-3">
+        <label for="name" class="form-label">{{ ct('com_contact.admin.col.name') }}</label>
+        <input type="text" class="form-control{% if errors.name %} is-invalid{% endif %}"
+               id="name" name="name" value="{{ form.name or '' }}" required>
+        {% if errors.name %}
+        <div class="invalid-feedback">{{ errors.name }}</div>
+        {% endif %}
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">{{ ct('com_contact.admin.col.email') }}</label>
+        <input type="email" class="form-control{% if errors.email %} is-invalid{% endif %}"
+               id="email" name="email" value="{{ form.email or '' }}" required>
+        {% if errors.email %}
+        <div class="invalid-feedback">{{ errors.email }}</div>
+        {% endif %}
+      </div>
+
+      <div class="mb-3">
+        <label for="subject" class="form-label">{{ ct('com_contact.admin.col.subject') }}</label>
+        <input type="text" class="form-control" id="subject" name="subject"
+               value="{{ form.subject or '' }}">
+      </div>
+
+      <div class="mb-3">
+        <label for="message" class="form-label">{{ ct('com_contact.admin.col.message') }}</label>
+        <textarea class="form-control{% if errors.message %} is-invalid{% endif %}"
+                  id="message" name="message" rows="6" required>{{ form.message or '' }}</textarea>
+        {% if errors.message %}
+        <div class="invalid-feedback">{{ errors.message }}</div>
+        {% endif %}
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

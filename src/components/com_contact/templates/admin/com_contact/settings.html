@@ -2,6 +2,14 @@
 {% block title %}{{ ct('com_contact.admin.settings') }} – {{ ct('com_contact.admin.heading') }}{% endblock %}
 {% block heading %}{{ ct('com_contact.admin.heading') }}{% endblock %}
 
+{% from "_toolbar.html" import btn_save, btn_cancel %}
+{% block toolbar %}
+<div class="cms-toolbar" role="toolbar" aria-label="{{ ct('com_contact.admin.settings') }}">
+  {{ btn_save(t) }}
+  {{ btn_cancel(t, '/admin/com_contact') }}
+</div>
+{% endblock %}
+
 {% block content %}
 <nav aria-label="breadcrumb" class="mb-3">
   <ol class="breadcrumb">
@@ -20,7 +28,7 @@
 
 <div class="card">
   <div class="card-body">
-    <form method="post" action="/admin/com_contact/settings">
+    <form id="cms-edit-form" method="post" action="/admin/com_contact/settings">
       <input type="hidden" name="_csrf" value="{{ request.session.get('_csrf', '') }}">
 
       <div class="form-check mb-3">
@@ -55,9 +63,6 @@
         </label>
       </div>
 
-      <button type="submit" class="btn btn-primary">
-        {{ ct('com_contact.admin.settings.save') }}
-      </button>
     </form>
   </div>
 </div>

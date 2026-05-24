@@ -4,7 +4,7 @@
   "type": "component",
   "vendor": "klucon",
   "extension_id": "klucon/com_contact",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "display_name": "Kontaktní formulář",
   "display_name_key": "components.name.com_contact",
   "description": "Kontaktní formulář s admin schránkou. Zprávy ukládá do DB, odesílá e-mail notifikaci. Honeypot anti-spam ochrana.",
