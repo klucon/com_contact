@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}{{ ct('com_contact.admin.settings') }} – {{ ct('com_contact.admin.heading') }}{% endblock %}
+{% block heading %}{{ ct('com_contact.admin.heading') }}{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb" class="mb-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/admin">{{ t('nav.dashboard') }}</a></li>
+    <li class="breadcrumb-item"><a href="/admin/com_contact">{{ ct('com_contact.admin.heading') }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ ct('com_contact.admin.settings') }}</li>
+  </ol>
+</nav>
+
+{% if flash %}
+<div class="alert alert-{{ flash.type }} alert-dismissible mb-4" role="alert">
+  {{ flash.text }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ t('alert.close') }}"></button>
+</div>
+{% endif %}
+
+<div class="card">
+  <div class="card-body">
+    <form method="post" action="/admin/com_contact/settings">
+      <input type="hidden" name="_csrf" value="{{ request.session.get('_csrf', '') }}">
+
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" name="enabled" id="enabled"
+               {% if settings.enabled %}checked{% endif %}>
+        <label class="form-check-label" for="enabled">
+          {{ ct('com_contact.admin.settings.enabled') }}
+        </label>
+      </div>
+
+      <div class="mb-3">
+        <label for="recipient_email" class="form-label">
+          {{ ct('com_contact.admin.settings.recipient_email') }}
+        </label>
+        <input type="email" class="form-control" id="recipient_email" name="recipient_email"
+               value="{{ settings.recipient_email }}">
+      </div>
+
+      <div class="mb-3">
+        <label for="subject_prefix" class="form-label">
+          {{ ct('com_contact.admin.settings.subject_prefix') }}
+        </label>
+        <input type="text" class="form-control" id="subject_prefix" name="subject_prefix"
+               value="{{ settings.subject_prefix }}">
+      </div>
+
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" name="notify_sender" id="notify_sender"
+               {% if settings.notify_sender %}checked{% endif %}>
+        <label class="form-check-label" for="notify_sender">
+          {{ ct('com_contact.admin.settings.notify_sender') }}
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-primary">
+        {{ ct('com_contact.admin.settings.save') }}
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}

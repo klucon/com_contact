@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0",
+  "name": "com_contact",
+  "type": "component",
+  "vendor": "klucon",
+  "extension_id": "klucon/com_contact",
+  "version": "0.1.0",
+  "display_name": "Kontaktní formulář",
+  "display_name_key": "components.name.com_contact",
+  "description": "Kontaktní formulář s admin schránkou. Zprávy ukládá do DB, odesílá e-mail notifikaci. Honeypot anti-spam ochrana.",
+  "license": "MIT",
+  "author": {
+    "name": "KLUCON",
+    "url": "https://klucon.cz"
+  },
+  "links": {
+    "homepage": "https://marketplace.klucon.cz",
+    "repository": "https://github.com/klucon/com_contact"
+  },
+  "compatibility": {
+    "core_min": "0.2.0",
+    "core_max": null,
+    "python": ">=3.12",
+    "database": ["mysql", "postgresql"]
+  },
+  "package": {
+    "entrypoint": "src.components.com_contact",
+    "setup_function": "setup",
+    "admin_router": "admin.router"
+  },
+  "routes": {
+    "admin": {
+      "enabled": true,
+      "prefix": "/admin/com_contact",
+      "nav_label": "components.name.com_contact",
+      "nav_icon": "envelope",
+      "nav_order": 200
+    },
+    "web": {
+      "enabled": true,
+      "slug_key": "route.slug"
+    }
+  },
+  "permissions": [
+    {
+      "key": "contact.view",
+      "label": "permissions.contact.view"
+    },
+    {
+      "key": "contact.manage",
+      "label": "permissions.contact.manage"
+    }
+  ],
+  "i18n": {
+    "domain": "com_contact",
+    "locales_path": "i18n",
+    "required_locales": ["cs_CZ", "en_GB"]
+  },
+  "migrations": {
+    "enabled": false,
+    "path": "migrations"
+  },
+  "security": {
+    "requires_signature": true,
+    "capabilities": [
+      "admin.routes",
+      "web.routes",
+      "database.read",
+      "database.write",
+      "mailer"
+    ]
+  },
+  "marketplace": {
+    "category": "communication",
+    "tags": ["contact", "form", "email", "inbox"],
+    "featured": false
+  },
+  "changelog": "První vydání: kontaktní formulář, admin schránka, e-mail notifikace, honeypot spam ochrana."
+}

@@ -1,0 +1,41 @@
+{
+  "route.slug": "kontakt",
+
+  "components.name.com_contact": "Kontaktní formulář",
+  "permissions.contact.view": "Zobrazit zprávy z kontaktního formuláře",
+  "permissions.contact.manage": "Spravovat kontaktní formulář",
+
+  "com_contact.form.title": "Kontakt",
+  "com_contact.form.heading": "Kontaktujte nás",
+  "com_contact.form.name": "Jméno",
+  "com_contact.form.email": "E-mail",
+  "com_contact.form.subject": "Předmět",
+  "com_contact.form.message": "Zpráva",
+  "com_contact.form.submit": "Odeslat zprávu",
+  "com_contact.form.disabled": "Kontaktní formulář je momentálně nedostupný.",
+  "com_contact.form.sent": "Zpráva byla odeslána. Děkujeme!",
+
+  "com_contact.form.error.name_required": "Vyplňte prosím své jméno.",
+  "com_contact.form.error.email_invalid": "Zadejte platnou e-mailovou adresu.",
+  "com_contact.form.error.message_required": "Napište prosím zprávu.",
+
+  "com_contact.admin.heading": "Kontaktní formulář",
+  "com_contact.admin.inbox": "Přijaté zprávy",
+  "com_contact.admin.settings": "Nastavení",
+  "com_contact.admin.total": "Celkem {total} zpráv",
+  "com_contact.admin.unread": "{unread} nepřečtených",
+  "com_contact.admin.col.id": "ID",
+  "com_contact.admin.col.name": "Jméno",
+  "com_contact.admin.col.email": "E-mail",
+  "com_contact.admin.col.subject": "Předmět",
+  "com_contact.admin.col.date": "Datum",
+  "com_contact.admin.col.actions": "Akce",
+  "com_contact.admin.action.read": "Označit jako přečtené",
+  "com_contact.admin.action.delete": "Smazat",
+  "com_contact.admin.confirm.delete": "Opravdu smazat tuto zprávu?",
+  "com_contact.admin.settings.enabled": "Formulář aktivní",
+  "com_contact.admin.settings.recipient_email": "E-mail příjemce",
+  "com_contact.admin.settings.subject_prefix": "Předpona předmětu",
+  "com_contact.admin.settings.notify_sender": "Potvrdit odesílateli přijetí zprávy",
+  "com_contact.admin.settings.save": "Uložit nastavení"
+}

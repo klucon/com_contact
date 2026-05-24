@@ -1,0 +1,41 @@
+{
+  "route.slug": "contact",
+
+  "components.name.com_contact": "Contact Form",
+  "permissions.contact.view": "View contact form messages",
+  "permissions.contact.manage": "Manage contact form",
+
+  "com_contact.form.title": "Contact",
+  "com_contact.form.heading": "Contact Us",
+  "com_contact.form.name": "Name",
+  "com_contact.form.email": "Email",
+  "com_contact.form.subject": "Subject",
+  "com_contact.form.message": "Message",
+  "com_contact.form.submit": "Send message",
+  "com_contact.form.disabled": "The contact form is currently unavailable.",
+  "com_contact.form.sent": "Your message has been sent. Thank you!",
+
+  "com_contact.form.error.name_required": "Please enter your name.",
+  "com_contact.form.error.email_invalid": "Please enter a valid email address.",
+  "com_contact.form.error.message_required": "Please write a message.",
+
+  "com_contact.admin.heading": "Contact Form",
+  "com_contact.admin.inbox": "Inbox",
+  "com_contact.admin.settings": "Settings",
+  "com_contact.admin.total": "Total {total} messages",
+  "com_contact.admin.unread": "{unread} unread",
+  "com_contact.admin.col.id": "ID",
+  "com_contact.admin.col.name": "Name",
+  "com_contact.admin.col.email": "Email",
+  "com_contact.admin.col.subject": "Subject",
+  "com_contact.admin.col.date": "Date",
+  "com_contact.admin.col.actions": "Actions",
+  "com_contact.admin.action.read": "Mark as read",
+  "com_contact.admin.action.delete": "Delete",
+  "com_contact.admin.confirm.delete": "Really delete this message?",
+  "com_contact.admin.settings.enabled": "Form enabled",
+  "com_contact.admin.settings.recipient_email": "Recipient email",
+  "com_contact.admin.settings.subject_prefix": "Subject prefix",
+  "com_contact.admin.settings.notify_sender": "Send confirmation to sender",
+  "com_contact.admin.settings.save": "Save settings"
+}

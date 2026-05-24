@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}{{ t('com_contact.form.title') }}{% endblock %}
+
+{% block content %}
+<div class="py-4">
+  <h1 class="h3 mb-4">{{ t('com_contact.form.heading') }}</h1>
+
+  {% if not settings.enabled %}
+  <div class="alert alert-warning">{{ t('com_contact.form.disabled') }}</div>
+  {% else %}
+
+  <form method="post" novalidate>
+    {# Honeypot – skryté před uživateli, boti ho vyplní #}
+    <div style="position:absolute;left:-9999px;opacity:0" aria-hidden="true" tabindex="-1">
+      <label for="website">Website</label>
+      <input type="text" id="website" name="website" autocomplete="off" tabindex="-1">
+    </div>
+
+    <div class="mb-3">
+      <label for="name" class="form-label">{{ t('com_contact.form.name') }} *</label>
+      <input type="text" class="form-control {% if errors.name %}is-invalid{% endif %}"
+             id="name" name="name" value="{{ form_data.get('name', '') }}"
+             required autocomplete="name">
+      {% if errors.name %}
+      <div class="invalid-feedback">{{ t(errors.name) }}</div>
+      {% endif %}
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">{{ t('com_contact.form.email') }} *</label>
+      <input type="email" class="form-control {% if errors.email %}is-invalid{% endif %}"
+             id="email" name="email" value="{{ form_data.get('email', '') }}"
+             required autocomplete="email">
+      {% if errors.email %}
+      <div class="invalid-feedback">{{ t(errors.email) }}</div>
+      {% endif %}
+    </div>
+
+    <div class="mb-3">
+      <label for="subject" class="form-label">{{ t('com_contact.form.subject') }}</label>
+      <input type="text" class="form-control"
+             id="subject" name="subject" value="{{ form_data.get('subject', '') }}">
+    </div>
+
+    <div class="mb-3">
+      <label for="message" class="form-label">{{ t('com_contact.form.message') }} *</label>
+      <textarea class="form-control {% if errors.message %}is-invalid{% endif %}"
+                id="message" name="message" rows="6"
+                required>{{ form_data.get('message', '') }}</textarea>
+      {% if errors.message %}
+      <div class="invalid-feedback">{{ t(errors.message) }}</div>
+      {% endif %}
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+      {{ t('com_contact.form.submit') }}
+    </button>
+  </form>
+
+  {% endif %}
+</div>
+{% endblock %}
