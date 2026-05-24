@@ -9,11 +9,12 @@ if TYPE_CHECKING:
 _COMPONENT_DIR = Path(__file__).parent
 
 
-def setup(reg: "ComponentRegistry") -> None:
-    from src.components.com_contact import admin, web_views
+def setup(reg: ComponentRegistry) -> None:
+    from jinja2 import FileSystemLoader
     from src.core.templates import get_frontend_env
     from src.i18n.translator import translator
-    from jinja2 import FileSystemLoader
+
+    from src.components.com_contact import admin, web_views
 
     reg.register("com_contact", "src.components.com_contact")
     reg.register_display_name("com_contact", "components.name.com_contact")

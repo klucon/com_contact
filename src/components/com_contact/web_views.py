@@ -1,9 +1,8 @@
 from __future__ import annotations
 
 from fastapi import Request
-from fastapi.responses import HTMLResponse, RedirectResponse, Response
+from fastapi.responses import RedirectResponse, Response
 from sqlalchemy.ext.asyncio import AsyncSession
-
 from src.api.web.render import web_render
 from src.core.mailer import send_email
 from src.core.routes import resolve_component_slug
@@ -75,7 +74,7 @@ async def _handle_post(request, db, locale, settings) -> Response:
     if request.client:
         client_ip = request.client.host or ""
 
-    msg = await create_message(
+    await create_message(
         db,
         name=name,
         email=email,

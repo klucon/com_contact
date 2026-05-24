@@ -1,10 +1,8 @@
 from __future__ import annotations
 
-import pytest
 from httpx import AsyncClient
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.components.com_contact.models import ContactMessage
 from src.components.com_contact.service import (
     count_messages,
     count_unread,
@@ -15,7 +13,6 @@ from src.components.com_contact.service import (
     mark_read,
     save_settings,
 )
-
 
 # ---------------------------------------------------------------------------
 # service layer

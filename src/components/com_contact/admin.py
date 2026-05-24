@@ -3,7 +3,6 @@ from __future__ import annotations
 from fastapi import APIRouter, Depends, Form, Request
 from fastapi.responses import HTMLResponse, RedirectResponse, Response
 from sqlalchemy.ext.asyncio import AsyncSession
-
 from src.api.admin.deps import CurrentAdminUser
 from src.api.admin.render import admin_render
 from src.core.acl import require_admin_permission

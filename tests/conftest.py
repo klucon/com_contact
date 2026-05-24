@@ -24,9 +24,12 @@ os.environ.setdefault("ALLOWED_ORIGINS", "[]")
 import pytest_asyncio  # noqa: E402
 from httpx import ASGITransport, AsyncClient  # noqa: E402
 from jinja2 import FileSystemLoader  # noqa: E402
-from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine  # noqa: E402
+from sqlalchemy.ext.asyncio import (  # noqa: E402
+    AsyncSession,
+    async_sessionmaker,
+    create_async_engine,
+)
 from sqlalchemy.pool import StaticPool  # noqa: E402
-
 from src.config import get_settings  # noqa: E402
 from src.constants import ROLE_ADMIN, ROLE_SUPER_ADMIN, ROLE_VIEWER  # noqa: E402
 from src.core.db import get_optional_db_session  # noqa: E402
@@ -61,9 +64,10 @@ if not any(
 ):
     _frontend_env.loader.loaders.append(FileSystemLoader(str(_FRONTEND_TEMPLATES)))
 
+from src.main import app as _cms_app  # noqa: E402
+
 from src.components.com_contact import admin as _contact_admin  # noqa: E402
 from src.components.com_contact import web_views as _contact_web  # noqa: E402
-from src.main import app as _cms_app  # noqa: E402
 
 # Register component and web view in the global registry
 _cms_registry.register("com_contact", "src.components.com_contact")
@@ -133,7 +137,10 @@ async def client(db_session: AsyncSession):
 @pytest_asyncio.fixture
 async def superadmin(db_session: AsyncSession) -> User:
     from sqlalchemy import select
-    role = (await db_session.execute(select(Role).where(Role.name == ROLE_SUPER_ADMIN))).scalar_one()
+
+    role = (
+        await db_session.execute(select(Role).where(Role.name == ROLE_SUPER_ADMIN))
+    ).scalar_one()
     user = User(
         username="superadmin", email="superadmin@test.com",
         hashed_password=hash_password("heslo1234", rounds=_BCRYPT_ROUNDS),
