@@ -75,5 +75,15 @@
     "tags": ["contact", "form", "email", "inbox"],
     "featured": false
   },
+  "dashboard": {
+    "quick_icon": {
+      "enabled": true,
+      "label": "Kontaktní formulář",
+      "description": "Schránka příchozích zpráv z kontaktního formuláře.",
+      "icon": "envelope",
+      "url": "/admin/com_contact",
+      "order": 200
+    }
+  },
   "changelog": "První vydání: kontaktní formulář, admin schránka, e-mail notifikace, honeypot spam ochrana."
 }
